@@ -1,0 +1,284 @@
+% !TeX document-id = {4a66a092-a797-425f-b588-c0b0f6bcb4d3}
+% !TeX TXS-program:compile = txs:///lualatex/ | txs:///biber | txs:///lualatex | txs:///lualatex | txs:///view
+% arara: clean: { extensions: ['aux', 'bbl', 'bcf', 'blg', 'log', 'pdf', 'run.xml'] }
+% arara: lualatex
+% arara: biber
+% arara: lualatex
+% arara: lualatex
+% arara: clean: { extensions: ['aux', 'bbl', 'bcf', 'blg', 'log', 'run.xml'] }
+\documentclass[
+	DIV=calc,
+	final,
+	fontsize=11pt,
+	paper=landscape
+]{scrartcl}
+\usepackage[left=1.2cm,right=1.2cm,top=1.8cm,bottom=1.8cm]{geometry}
+
+% Font loading and micro-typography (LuaLaTeX)
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\renewcommand{\familydefault}{\sfdefault} % use sans as the default family
+\usepackage{microtype}
+
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array,tabularx}
+% ragged-right paragraph column type
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\usepackage[
+	colorlinks=true,
+	urlcolor=Primary,
+	linkcolor=Primary,
+	anchorcolor=Primary,
+	citecolor=Primary
+]{hyperref}
+
+\definecolor{Primary}{named}{DarkSlateBlue}
+\definecolor{Secondary}{named}{CornflowerBlue}
+\definecolor{TeoriaColor}{RGB}{230,240,250}
+\definecolor{LabColor}{RGB}{232,245,233}
+\definecolor{EvalColor}{RGB}{255,243,224}
+
+\newcommand{\cellteoria}[1]{\cellcolor{TeoriaColor}\parbox[c]{7cm}{\small #1}}
+\newcommand{\celllab}[1]{\cellcolor{LabColor}\parbox[c]{7cm}{\small #1}}
+\newcommand{\cellevaluacion}[1]{\cellcolor{EvalColor}\parbox[c]{7cm}{\centering\small #1}}
+\newcommand{\cellvacio}[1]{\cellcolor{white}\parbox[c]{7cm}{\small #1}}
+
+\usepackage[citestyle=numeric,backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+\pagestyle{empty}
+
+\newcommand{\CourseTitle}{Sílabo dosificado de Métodos Numéricos para Ecuaciones Diferenciales Parciales~CM 032 A}
+\newcommand{\Professor}{Fidel Jara Huanca}
+\newcommand{\Term}{2026-1}
+\newcommand{\CourseURL}{https://cm032.github.io}
+
+% PDF metadata and hyperref setup
+\hypersetup{
+	pdftitle={\CourseTitle},
+	pdfauthor={\Professor},
+	pdfsubject={Syllabus},
+	unicode=true
+}
+
+% KOMA-Script heading fonts
+% \setkomafont{section}{\normalfont\Large\bfseries}
+% \setkomafont{subsection}{\normalfont\large\bfseries}
+
+\begin{document}
+
+
+\begin{center}
+	\Large\bfseries\color{Primary}
+	\CourseTitle
+
+	\vspace{0.1cm}
+
+	\small\color{Primary}
+	Profesor: \Professor.\qquad
+	Ciclo: \Term.\qquad
+	Sitio web: \url{\CourseURL}
+
+	\textcolor{Secondary}{\rule{\textwidth}{0.3pt}}
+\end{center}
+
+\begin{center}
+	\small
+	\colorbox{TeoriaColor}{\strut Teoría: (16:00-18:00 horas)}\qquad
+	\colorbox{LabColor}{\strut Laboratorio: (17:00-19:00 horas)}\qquad
+	\colorbox{EvalColor}{\strut Evaluación}
+\end{center}
+
+\begin{longtable}{|c|P{7.2cm}|P{7.2cm}|P{7.2cm}|}
+
+	\hline
+	\rowcolor{Primary}
+	\multicolumn{1}{|c|}{\textcolor{white}{\bfseries Semana}}                                     &
+	\multicolumn{1}{c|}{\textcolor{white}{\bfseries Lunes}}                                       &
+	\multicolumn{1}{c|}{\textcolor{white}{\bfseries Miércoles}}                                   &
+	\multicolumn{1}{c|}{\textcolor{white}{\bfseries Viernes}}                                       \\
+	\hline
+	\endhead
+
+	\hline
+	\endlastfoot
+	1                                                                                             &
+	\cellteoria{
+		Entrega del sílabo.
+		Motivación al curso.
+		Prueba de entrada.
+	}                                                                                             &
+	\celllab{
+		Introducción a Python~\cite{python314},
+		NumPy~\cite{Harris2020}, SciPy~\cite{Virtanen2020},
+		SymPy~\cite{Meurer2017} y Matplotlib~\cite{Hunter2007}.
+		Método de diferencia finita para un problema de valor de frontera
+		de $2$ puntos~\cite{Köbis2025}.
+	}                                                                                             &
+	\cellteoria{Aproximaciones de diferencias finitas.
+		Esquemas hacia adelante, hacia atrás, Crank-Nicolson para una
+		ecuación de difusión no homogénea.~\cite[pág.~253]{Atkinson2009}.
+	}                                                                                               \\
+	\hline
+	2                                                                                             &
+	\cellteoria{
+		Solución de un problema de valor inicial.
+		Buen planteamiento de la solución.
+		Solución generalizada de un problema de valor inicial.
+		Consistencia.
+		Convergencia.
+		Estabilidad.~\cite[pág.~260]{Atkinson2009}.
+	}                                                                                             &
+	\celllab{
+		Derivación de esquemas de diferencias para la ecuación de
+		difusión, onda, transporte~\cite{Shiach2020,Strikwerda2004,Mortensen2023}.
+		Simulaciones de la ecuación de transporte~\cite{Aznaran2025}.
+	}                                                                                             &
+	\cellteoria{
+		Teorema de equivalencia de Lax.
+		Orden de convergencia.
+		Esquema de dos niveles.
+		Revisión de consistencia, convergencia y estabilidad.
+		Estimación de error~\cite[pág.~266]{Atkinson2009}.
+	}                                                                                               \\
+	\hline
+	3                                                                                             &
+	\cellteoria{
+		Métodos de diferencias finitas para problemas elípticos.
+		Funciones malla y Operadores de diferencia finita.
+		Propiedades de operadores de diferencia.
+		Punto malla interior, frontera, clausura~\cite[pág.~664]{Salgado2022}.
+	}                                                                                             &
+	\cellevaluacion{Práctica Calificada $1$}                                                      &
+	\cellteoria{
+		Propiedad de aproximación.
+		Producto interno discreto.
+		Operador de consistencia.
+		Convergencia.
+		Teorema de Lax.
+		Problema de Poisson 1D.
+		Principio del máximo discreto.
+		Problema de Poisson 2D.~\cite[pág.~671]{Salgado2022}
+	}                                                                                               \\
+	\hline
+	4                                                                                             &
+	\cellteoria{
+	Método de Galerkín.
+	Lema de Cea.
+	Teorema de Lax Milgram.
+	Base de Lagrange. {[}2{]}
+	}                                                                                             &
+	\celllab{
+	Esquema de 5 puntos para Poisson 1D y esquema de 9 puntos para Poisson 2D.
+	Solución por métodos iterativos. {[}3{]}
+	}                                                                                             &
+	\cellteoria{
+	Construcción de la matriz de rigidez y del vector de carga en el método de Galerkin. {[}2{]}
+	}                                                                                               \\
+	\hline
+	5                                                                                             &
+	\cellteoria{
+	Motivación.
+	Ecuación de transporte.
+	Ondas acústicas.
+	Flujo de tráfico.
+	Aguas poco profundas.
+	Ecuaciones de Euler. {[}4{]}
+	}                                                                                             &
+	\cellevaluacion{Práctica Calificada $2$}                                                      &
+	\cellteoria{
+	Leyes de conservación hiperbólicas escalar y sistemas.
+	Solución clásica, débil y entrópica.
+	Ondas de choque. {[}4{]}
+	}                                                                                               \\
+	\hline
+	6                                                                                             &
+	\cellteoria{
+	Condición CFL.
+	Ecuación de transporte.
+	Ecuación de Burgers.
+	Consistencia.
+	Estabilidad von Neumann.
+	Esquemas Upwind,
+	FTCS,
+	Lax-Friedrichs,
+	Leapfrog.
+	Problema de Riemann.{[}5{]}}                                                                  &
+	\celllab{
+	Ejercicios sugeridos:
+	3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8. {[}6{]}
+	}                                                                                             &
+	\cellteoria{
+	Esquema BTCS, Lax-Wendroff, Crank-Nicolson, Du Fort-Frankel. {[}5{]}
+	}                                                                                               \\
+	\hline
+	7                                                                                             &
+	\cellteoria{
+	Ecuaciones de Agua Poco Profundas 1D.
+	Problema de Dam Break.
+	Esquema de Mac-Cormack. {[}3{]}
+	}                                                                                             &
+	\celllab{
+	Ejercicios:
+	Detallar ejemplos sección 5.1 {[}7{]} Ejercicios capítulo 29 {[}2{]}
+	}                                                                                             &
+	\cellteoria{Presentación del Proyecto. Parte 1}                                                 \\
+	\hline
+	8                                                                                             &
+	\multicolumn{3}{c|}{\cellevaluacion{Examen Parcial}}                                            \\
+	\hline
+	9                                                                                             &
+	\cellteoria{Propiedad monótona de esquemas. Teorema de Godunov. {[}6{]}}                      &
+	\celllab{Tutorial de Clawpack}                                                                &
+	\cellteoria{Método de Volúmenes Finitos. Problema de Dirichlet. Estimación de error.}           \\
+	\hline
+	10                                                                                            &
+	\cellteoria{Problemas parabólicos e hiperbólicos. {[}4{]}}                                    &
+	\cellevaluacion{Práctica Calificada $3$}                                                      &
+	\cellteoria{Esquema numérico para caso lineal y no lineal. {[}4{]}}                             \\
+	\hline
+	11                                                                                            &
+	\cellteoria{Método de Godunov y variantes. {[}4{]}}                                           &
+	\celllab{Ejercicios sugeridos}                                                                &
+	\cellteoria{Teorema de Lax Wendroff. {[}6{]}}                                                   \\
+	\hline
+	12                                                                                            &
+	\cellteoria{Resolvente de Riemann aproximado. {[}4{]}}                                        &
+	\cellevaluacion{Práctica Calificada $4$}                                                      &
+	\cellteoria{Método de direcciones alternadas. {[}6{]}}                                          \\
+	\hline
+	13                                                                                            &
+	\cellteoria{Método WENO y ENO. {[}6{]}}                                                       &
+	\celllab{Ejercicios sugeridos}                                                                &
+	\cellteoria{Técnicas de descomposición de flujo}                                                \\
+	\hline
+	14                                                                                            &
+	\cellteoria{Esquema de variación total decreciente (TVD) y consistente con entropía. {[}6{]}} &
+	\celllab{Ejercicios sugeridos}                                                                &
+	\cellteoria{Métodos de volúmenes finitos en mallas no estructuradas}                            \\
+	\hline
+	15                                                                                            &
+	\cellteoria{Aplicaciones. {[}4{]}}                                                            &
+	\cellevaluacion{Práctica Calificada $5$}                                                      &
+	\cellteoria{Presentación del Proyecto. Parte II}                                                \\
+	\hline
+	16                                                                                            &
+	\multicolumn{3}{c|}{\cellevaluacion{Examen Final}}                                              \\
+	\hline
+	17                                                                                            &
+	\multicolumn{3}{c|}{\cellevaluacion{Examen Sustitutorio}}                                       \\
+	\hline
+\end{longtable}
+
+\printbibliography[title={\color{Primary}Referencias}]
+
+\end{document}

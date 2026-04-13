@@ -1,0 +1,84 @@
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav',
+% arara: --> 'out', 'pdf', 'run.xml', 'snm', 'toc']
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav',
+% arara: --> 'out', 'run.xml', 'snm', 'toc']
+% arara: --> }
+\input{preamble}
+
+
+\title{Clase 2: Método de Diferencias Finitas}
+\date{27 de marzo de 2026}
+
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\input{finitedifferences}
+\input{thomas}
+
+\begin{frame}\transblindsvertical
+	\frametitle{Referencias}
+
+	\only<1>{
+		\begin{itemize}
+			\item
+
+			      Libros
+
+			      \
+
+			      \nocite{*}
+			      \printbibliography[heading=none,keyword=book]
+		\end{itemize}
+	}
+
+	% \only<2>{
+	% 	\begin{itemize}
+	% 		\item
+
+	% 		      Artículos
+
+	% 		      \
+
+	% 		      \printbibliography[heading=none,keyword=paper]
+	% 	\end{itemize}
+	% }
+
+	\only<3>{
+		\begin{itemize}
+			\item
+
+			      Páginas web
+
+			      \
+
+			      \printbibliography[heading=none,keyword=online]
+		\end{itemize}
+	}
+\end{frame}
+
+
+\end{document}

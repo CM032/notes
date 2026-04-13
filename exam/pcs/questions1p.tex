@@ -1,0 +1,449 @@
+\noindent
+La práctica calificada comprende la entrega (formato \verb|report|)
+y la exposición (formato \verb|beamer|) de la resolución de los
+ejercicios siguientes.
+Fecha de entrega: lunes $13$ de abril de $2026$ a las 16 horas.
+Referencia:~\cite{Atkinson2009}.
+
+\section*{Aproximaciones de diferencias finitas}
+
+\begin{questions}
+	\question\label{question:1}
+
+	Un enfoque para derivar fórmulas de diferencias para aproximar
+	derivadas es el método de coeficientes indeterminados.
+	Supongamos que $f$ es una función suave en $\mathbb{R}$.
+	Sea $h>0$.
+	Determine los coeficientes $a$, $b$ y $c$ de modo que
+	\begin{equation*}
+		af\left(x+h\right)+
+		bf\left(x\right)+
+		cf\left(x-h\right)
+	\end{equation*}
+	es una aproximación de $f^{\prime}\left(x\right)$ con un orden como
+	lo más alto posible; es decir, elija $a$, $b$ y $c$ tales que
+	\begin{equation*}
+		\left|
+		af\left(x+h\right)+bf\left(x\right)+
+		cf\left(x-h\right)-f^{\prime}\left(x\right)
+		\right|\leq
+		\mathcal{O}\left(h^{p}\right).
+	\end{equation*}
+
+	\question
+
+	Haz el mismo problema del Ejercicio~\ref{question:1} con
+	$f^{\prime}\left(x\right)$ reemplazado por
+	$f^{\prime\prime}\left(x\right)$.
+
+	\question
+
+	¿Es posible utilizar
+	\begin{equation*}
+		af\left(x+h\right)+
+		bf\left(x\right)+
+		cf\left(x-h\right)
+	\end{equation*}
+	con coeficientes elegidos adecuadamente para aproximar
+	$f^{\prime\prime\prime}\left(x\right)$?
+	¿Cuántos valores de función se necesitan para aproximar
+	$f^{\prime\prime\prime}\left(x\right)$?
+
+	\question\label{question:4}
+
+	Para el problema del valor inicial de la ecuación de onda
+	unidireccional
+	\begin{equation}\label{eq:IVP-one-way-PDE}
+		\begin{cases}\displaystyle
+			\diffp{u}{t}=
+			a\diffp{u}{x}+
+			f   &
+			\text{en }\mathbb{R}\times\left(0,\infty\right). \\
+			u=f &
+			\text{en }\mathbb{R}\times\left\{t=0\right\}.
+		\end{cases}
+	\end{equation}
+	Donde $a\in\mathbb{R}$ es una constante, deriva alguna diferencia
+	esquemas basados en varias combinaciones de aproximaciones en
+	diferencias de la derivada temporal y la derivada espacial.
+
+	\question
+
+	La idea del esquema de Lax-Wendroff para resolver el problema del
+	valor inicial~\eqref{eq:IVP-one-way-PDE} del
+	Ejercicio~\ref{question:4} es el siguiente.
+	Comience con la expansión de Taylor
+	\begin{equation}\label{eq:taylor}
+		u\left(x_{j},t_{m+1}\right)\approx
+		u\left(x_{j},t_{m}\right)+
+		h_{t}\diffp{u}{t}\left(x_{j},t_{m}\right)+
+		\frac{h^{2}_{t}}{2}
+		\diffp[2]{u}{t}\left(x_{j},t_{m}\right).
+	\end{equation}
+	De la ecuación diferencial tenemos
+	\begin{equation*}
+		\diffp{u}{t}=
+		-a\diffp{u}{x}+
+		f
+	\end{equation*}
+	y
+	\begin{equation*}
+		\diffp[2]{u}{t}=
+		a^{2}\diffp[2]{u}{x}-
+		a\diffp{f}{x}+
+		\diffp{f}{t}.
+	\end{equation*}
+	Utilice estas relaciones para reemplazar las derivadas del tiempo
+	en el lado derecho de~\eqref{eq:taylor}.
+	Luego reemplace la primera y segunda derivadas espaciales por
+	diferencias centrales.
+	Finalmente, reemplace $\diffp{f}{x}$ por una diferencia central y
+	$\diffp{f}{t}$ por una diferencia directa.
+	Siga las instrucciones anteriores para derivar el esquema de
+	Lax-Wendroff para resolver~\eqref{eq:IVP-one-way-PDE}.
+
+	\question
+
+	Dar esquemas hacia adelante, hacia atrás y Crank-Nicolson para el problema de valor inicial frontera
+	\begin{equation*}
+		\begin{cases}\displaystyle
+			\diffp{u}{t}=
+			\nu_{1}\diffp[2]{u}{x}+
+			\nu_{2}\diffp[2]{u}{y}+
+			f\left(x,y,t\right) &
+			\text{en }\left(0,a\right)\times\left(0,b\right)\times\left(0,T\right). \\
+			u=g_{l}             &
+			\text{en }\left\{0\right\}\times\left[0,b\right]\times\left[0,T\right]. \\
+			u=g_{r}             &
+			\text{en }\left\{a\right\}\times\left[0,b\right]\times\left[0,T\right]. \\
+			u=g_{b}             &
+			\text{en }\left[0,a\right]\times\left\{0\right\}\times\left[0,T\right]. \\
+			u=g_{t}             &
+			\text{en }\left[0,a\right]\times\left\{b\right\}\times\left[0,T\right]. \\
+			u=u_{0}             &
+			\text{en }\left[0,a\right]\times\left[0,b\right]\times\left\{t=0\right\}.
+		\end{cases}
+	\end{equation*}
+	Aquí, para los datos dados, $\nu_{1}$, $\nu_{2}$, $a$, $b$, $T$ son
+	números positivos, y $f$, $g_{l}$, $g_{r}$, $g_{b}$, $g_{t}$,
+	$u_{0}$ son funciones continuas de sus argumentos.
+
+	\question
+
+	Considere el problema del valor inicial frontera de una ecuación hiperbólica
+	\begin{equation*}
+		\begin{cases}\displaystyle
+			\diffp[2]{u}{t}=
+			\nu\diffp[2]{u}{x}+
+			f\left(x,t\right)  &
+			\text{en }\left(0,a\right)\times\left(0,T\right).   \\
+			u=g_{1}            &
+			\text{en }\left\{0\right\}\times\left[0,T\right].   \\
+			u=g_{2}            &
+			\text{en }\left\{a\right\}\times\left[0,T\right].   \\
+			u=u_{0}            &
+			\text{en }\left[0,a\right]\times\left\{t=0\right\}. \\
+			\diffp{u}{t}=v_{0} &
+			\text{en }\left[0,a\right]\times\left\{t=0\right\}.
+		\end{cases}
+	\end{equation*}
+	Aquí, para los datos dados, $\nu$, $a$, $T$ son números positivos y
+	$f$, $g_{1}$, $g_{2}$, $u_{0}$, $v_{0}$ son funciones continuas de sus argumentos.
+	Analice cómo formar un esquema de diferencias finitas razonable para resolver el problema.
+\end{questions}
+
+\subsection*{Teorema de equivalencia de Lax-Richtmyer}
+
+\begin{questions}
+	\question
+
+	Demuestre que el subespacio
+	\vspace*{-.5\baselineskip}\setlength\belowdisplayshortskip{0pt}
+	\begin{equation*}
+		V_{0}\coloneqq
+		\left\{
+		v\in V \,\middle\vert\,
+		v\left(x\right)=
+		\sum_{j=1}^{n}a_{j}\sen\left(jx\right),
+		a_{j}\in\mathbb{R},
+		n\in\mathbb{N}
+		\right\}
+	\end{equation*}
+	es denso en
+	\begin{math}
+		V\coloneqq
+		\left\{
+		v\in C\left(\left[0,\pi\right]\right)\mid
+		v\left(0\right)=
+		v\left(\pi\right)=0
+		\right\}
+	\end{math}.
+
+	\question
+
+	Analice el esquema de Crank-Nicolson para el problema~\eqref{eq:6.2.4}
+	\begin{equation}\label{eq:6.2.4}
+		\begin{cases}\displaystyle
+			\diffp{u}{t}=
+			\nu
+			\diffp[2]{u}{x} &
+			\text{en }\left[0,\pi\right]\times\left(0,T\right).   \\
+			u=u_{0}         &
+			\text{en }\left[0,\pi\right]\times\left\{t=0\right\}. \\
+			u=0             &
+			\text{en }\left\{0,\pi\right\}\times\left[0,T\right].
+		\end{cases}
+	\end{equation}
+
+	\question
+
+	Considere el esquema hacia adelante para resolver el problema de
+	muestra~\eqref{eq:6.2.4}.
+	Demuestre que $\left\|C\left(\Delta t\right)\right\|=\left|1-2r\right|+2r$,
+	y $r\leq\frac{1}{2}$ es una condición necesaria y suficiente para
+	estabilidad y convergencia.
+\end{questions}
+
+\subsection*{Más sobre convergencia y estabilidad}
+
+\begin{questions}
+	\question
+
+	Sea $\left\{a,b,c\right\}\subset\mathbb{R}$ con $bc\geq 0$.
+	Demuestre que los valores propios de la matriz
+	\begin{equation*}
+		Q=
+		\begin{bmatrix}
+			a      & c      & 0      & \cdots & 0 \\
+			b      & a      & c      & \ddots & 0 \\
+			0      & b      & \ddots & \ddots & 0 \\
+			\vdots & \ddots & \ddots & a      & c \\
+			0      & \cdots & 0      & b      & a
+		\end{bmatrix}\in\mathbb{R}^{N\times N}
+	\end{equation*}
+	son
+	\begin{equation*}
+		\lambda_{j}=
+		a+2\sqrt{bc}
+		\cos\left(\frac{j\pi}{N+1}\right),
+		\quad 1\leq j\leq N.
+	\end{equation*}
+	\textit{Sugerencia}:
+	Para el caso no trivial $bc\neq 0$, escribe
+	\begin{equation*}
+		Q=
+		aI+
+		\sqrt{bc}D^{-1}\Lambda D
+	\end{equation*}
+	con $D$ es una matriz diagonal con elementos diagonales
+	\begin{math}
+		\sqrt{\frac{c}{b}},
+		{\left(\sqrt{\frac{c}{b}}\right)}^{2},\dotsc,
+		{\left(\sqrt{\frac{c}{b}}\right)}^{N}
+	\end{math},
+	y $\Lambda$ es la matriz tridiagonal con ceros en la diagonal y
+	unos en la superdiagonal y subdiagonal,
+	\begin{equation*}
+		\Lambda=
+		\begin{bmatrix}
+			0      & 1      & 0      & \cdots & 0      \\
+			1      & 0      & 1      & \ddots & \vdots \\
+			0      & 1      & \ddots & \ddots & 0      \\
+			\vdots & 0      & \ddots & 0      & 1      \\
+			0      & \cdots & 0      & 1      & 0
+		\end{bmatrix}\in\mathbb{R}^{N\times N}.
+	\end{equation*}
+	Luego encuentre los valores propios de $\Lambda$ siguiendo la definición
+	del problema de valores propios y resolver un sistema de diferencias para
+	componentes de vectores propios asociados.
+	Un enfoque alternativo es relacionar la ecuación característica
+	de $\Lambda$ a través de su fórmula de recursividad a polinomios de
+	Chebyshev del segundo tipo~\cite[pág. 447]{Atkinson1991}.
+
+	\question
+
+	Proporcione un análisis de convergencia para el esquema de
+	Crank-Nicolson para el problema~\eqref{eq:heatPDECrankNicolson}
+	\begin{equation}\label{eq:heatPDECrankNicolson}
+		\begin{cases}\displaystyle
+			\frac{v^{m}_{j}-v^{m-1}_{j}}{h_{t}}=
+			\nu
+			\frac{
+				\left(v^{m}_{j+1}-2v^{m}_{j}+v^{m}_{j-1}\right)+
+				\left(v^{m-1}_{j+1}-2v^{m-1}_{j}+v^{m-1}_{j-1}\right)
+			}{2h^{2}_{x}}+
+			f^{m-\frac{1}{2}}_{j},             &
+			1\leq j\leq N_{x}-1, 1\leq m\leq N_{t}. \\
+			v^{m}_{0}=v^{m}_{N_{x}}=0,         &
+			0\leq m\leq N_{t}.                      \\
+			v^{0}_{j}=u_{0}\left(x_{j}\right), &
+			0\leq j\leq N_{x}.
+		\end{cases}
+	\end{equation}
+	en norma ${\left\|\cdot\right\|}_{2,h_{x}}$ aplicando el siguiente
+	Teorema~\ref{thm:1},
+	como se hace para los esquemas hacia adelante y hacia atrás en los ejemplos.
+	\begin{theorem}\label{thm:1}
+		Supongamos que el esquema~\eqref{eq:twolevels} es consistente y estable.
+		\begin{equation}\label{eq:twolevels}
+			\begin{aligned}
+				\symbf{v}^{m+1} & =
+				Q\symbf{v}^{m}+
+				h_{t}\symbf{g}^{m},\quad 0\leq m\leq N_{t}-1, \\
+				\symbf{v}^{0}   & =
+				\symbf{u}_{0}.
+			\end{aligned}
+		\end{equation}
+		Entonces el método es convergente.
+		Además, si la solución $u$ es lo suficientemente suave como para que se cumpla
+		\begin{equation}
+			\sup_{m:mh_{t}\leq T}
+			\left\|\symbf{\tau}^{m}\right\|\leq
+			c\left(h^{p_{1}}_{x}+h^{p_{2}}_{t}\right),
+		\end{equation}
+		entonces tenemos la estimación del error
+		\begin{equation*}
+			\sup_{m:mh_{t}\leq T}
+			\left\|\symbf{u}^{m}-\symbf{v}^{m}\right\|\leq
+			c\left(h^{p_{1}}_{x}+h^{p_{2}}_{t}\right).
+		\end{equation*}
+	\end{theorem}
+
+	\question
+
+	Los esquemas hacia adelante, hacia atrás y Crank-Nicolson son
+	casos particulares de una familia de esquemas de diferencias llamados
+	métodos de punto medio generalizados.
+	Sea $\theta\in\left[0,1\right]$ un parámetro.
+	Entonces, para el valor inicial / frontera
+	\begin{equation}\label{eq:heatPDE}
+		\begin{cases}\displaystyle
+			\diffp{u}{t}=
+			\nu\diffp[2]{u}{x}+
+			f\left(x,t\right) &
+			\text{en }\left(0,\pi\right)\times\left(0,T\right).   \\
+			u=0               &
+			\text{en }\left\{0,\pi\right\}\times\left(0,T\right). \\
+			u=u_{0}           &
+			\text{en }\left(0,\pi\right)\times\left\{t=0\right\}.
+		\end{cases}
+	\end{equation}
+	un esquema de punto medio generalizado es
+	\begin{equation}\label{eq:heatPDETheta}
+		\begin{cases}\displaystyle
+			\begin{split}
+				\frac{v^{m}_{j}-v^{m-1}_{j}}{h_{t}}=
+				\nu\theta
+				\frac{v^{m}_{j+1}-2v^{m}_{j}+v^{m}_{j-1}}{h^{2}_{x}}+
+				\nu\left(1-\theta\right)
+				\frac{v^{m-1}_{j+1}-2v^{m-1}_{j}+v^{m-1}_{j-1}}{h^{2}_{x}}+ \\
+				\theta f^{m}_{j}+
+				\left(1-\theta\right)f^{m-1}_{j},
+			\end{split} &
+			1\leq j\leq N_{x}-1, 1\leq m\leq N_{t}.                                                                                                                          \\
+			v^{m}_{0}=v^{m}_{N_{x}}=0,                                                                                                                                     &
+			0\leq m\leq N_{t}.                                                                                                                                               \\
+			v^{0}_{j}=u_{0}\left(x_{j}\right),                                                                                                                             &
+			0\leq j\leq N_{x}.
+		\end{cases}
+	\end{equation}
+	Demuestre que para $\theta\in\left[\frac{1}{2},1\right]$,
+	el esquema es incondicionalmente estable en las normas ${\left\|\cdot\right\|}_{2,h_{x}}$ y ${\left\|\cdot\right\|}_{\infty}$;
+	para $\theta\in\left[0,\frac{1}{2}\right)$, el esquema es condicionalmente estable en la norma ${\left\|\cdot\right\|}_{2,h_{x}}$
+	si $2\left(1-2\theta\right)r\leq 1$, y este es condicionalmente estable en la norma ${\left\|\cdot\right\|}_{\infty}$ si
+	$2\left(1-\theta\right)r\leq 1$.
+	Determinar los órdenes de convergencia de los esquemas.
+\end{questions}
+
+\section*{Sugerencia de lectura adicional}
+
+Más detalles sobre el análisis teórico del método de diferencias finitas,
+por ejemplo, tratamiento de otro tipo de condiciones de frontera,
+dominios espaciales generales para problemas de dimensión espacial
+superior, aproximación de problemas hiperbólicos o elípticos, se
+pueden encontrar en varios libros sobre el tema, por ejemplo~\cite{Strikwerda2004}.
+Para el método de diferencias finitas para problemas parabólicos,~\cite{Thomée1990}
+es un análisis de encuesta en profundidad.
+Otro enfoque popular para desarrollar métodos de diferencias finitas para problemas
+parabólicos es el método de las líneas; vea~\cite[pág. 414]{Atkinson1991}
+para una introducción que analiza algunos de los métodos de diferencias finitas de este
+capítulo.
+El libro~\cite{Gustafsson2008} proporciona una cobertura completa de
+métodos de diferencias finitas de alto orden para EDPs dependientes del tiempo.
+
+Para problemas de valor inicial / frontera de ecuaciones de evolución en alta dimensión espacial,
+la estabilidad de un esquema explícito generalmente requiere que el tamaño del paso de tiempo
+sea prohibitivamente pequeño.
+Por otro lado, algunos esquemas implícitos son incondicionalmente
+estables y el requisito de estabilidad no impone restricciones sobre el
+tamaño del paso temporal.
+La desventaja de un esquema implícito es que en cada nivel de tiempo
+es posible que necesitemos resolver un sistema algebraico de muy gran escala.
+La idea de la técnica de separación de operadores es dividir el
+cálculo de cada paso de tiempo en varios subpasos de modo que cada
+subpaso esté implícito solo en una variable espacial y al mismo
+tiempo se mantenga una buena propiedad de estabilidad.
+Los esquemas resultantes se denominan métodos de direcciones alternadas o métodos
+de pasos fraccionario.
+Véase~\cite{Marchuk1990,Yanenko1971} para discusiones detalladas.
+Muchos fenómenos físicos se describen mediante leyes de conservación (conservación de masa, momento y energía).
+Los métodos de diferencias finitas para las leyes de conservación constituyen un área de investigación grande.
+El lector interesado puede vea~\cite{LeVeque1992} y~\cite{Godlewski2021}.
+
+Los métodos de extrapolación son medios eficientes para acelerar la convergencia de soluciones numéricas.
+Para métodos de extrapolación en el contexto del método de diferencias finitas, vea~\cite{Marchuk1983}.
+
+\begin{questions}
+	\question\label{question:research}
+
+	Investigue sobre uno de los métodos de investigación, explique su idea principal, y discuta sus ventajas y limitaciones.
+	Algunos ejemplos de métodos de investigación incluyen:
+	\begin{itemize}
+		\item Métodos de extrapolación para acelerar la convergencia de esquemas de diferencias finitas.
+		\item Métodos de direcciones alternadas para resolver problemas de valor inicial / frontera de ecuaciones de evolución en alta dimensión espacial.
+		\item Método multigrid para resolver sistemas lineales de gran escala que surgen de esquemas implícitos.
+		\item Métodos de precondicionamiento iterativo para resolver sistemas lineales de gran escala que surgen de esquemas implícitos.
+		\item Método de líneas para resolver problemas de valor inicial / frontera de ecuaciones de evolución.
+		\item Método de separación de operadores para resolver problemas de valor inicial / frontera de ecuaciones de evolución.
+		\item Método de paso fraccionario para resolver problemas de valor inicial / frontera de ecuaciones de evolución.
+		\item Método de diferencia finita para la ecuación de Burgers.
+	\end{itemize}
+	% Considere el problema de valor inicial/frontera para una ecuación de evolución en
+	% dimensión espacial superior $\mathbb{R}^{d}$ con $d\geq 2$:
+	% \begin{equation*}
+	% 	\begin{cases}\displaystyle
+	% 		\diffp{u}{t}=
+	% 		\sum_{i=1}^{d}\nu_{i}\diffp[2]{u}{x_{i}}+
+	% 		f\left(\mathbf{x},t\right) &
+	% 		\text{en }\Omega\times\left(0,T\right),\\
+	% 		u=g &
+	% 		\text{en }\partial\Omega\times\left[0,T\right],\\
+	% 		u=u_{0} &
+	% 		\text{en }\Omega\times\left\{t=0\right\},
+	% 	\end{cases}
+	% \end{equation*}
+	% donde $\Omega\subset\mathbb{R}^{d}$ es un dominio espacial general, y $\nu_{i}>0$
+	% son coeficientes de difusión.
+	% Un esquema explícito para este problema requiere una condición de estabilidad
+	% que impone una restricción severa sobre el tamaño del paso temporal $h_{t}$
+	% (ver~\cite{Strikwerda2004,Gustafsson2008}).
+	% En contraste, los esquemas implícitos (como Crank-Nicolson) son incondicionalmente
+	% estables pero requieren resolver un sistema lineal de gran escala en cada paso temporal.
+
+	% \textbf{Investigar lo siguiente:}
+	% \begin{enumerate}
+	% 	\item Compare el costo computacional de un esquema explícito versus un esquema
+	% 	implícito para resolver este problema. Considere el número total de operaciones
+	% 	aritméticas, el almacenamiento en memoria, y el tiempo de ejecución.
+	% 	\item Explique cómo la técnica de separación de operadores (operador splitting)
+	% 	o métodos de direcciones alternadas (ADI, alternating direction implicit)
+	% 	mitiga este dilema. ¿Cómo se reduce la dimensionalidad efectiva del sistema
+	% 	a resolver en cada subpaso?~\cite{Marchuk1990,Yanenko1971}.
+	% 	\item Derive un esquema ADI para el problema anterior y analice su consistencia,
+	% 	estabilidad y convergencia.
+	% 	\item Discuta las limitaciones y ventajas del operador splitting respecto a otros
+	% 	enfoques, como precondicionamiento iterativo de esquemas implícitos o uso de
+	% 	multigrid.
+	% \end{enumerate}
+
+\end{questions}

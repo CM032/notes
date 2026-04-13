@@ -1,0 +1,359 @@
+%! arara: clean: {
+%! arara: --> extensions:
+%! arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav', 'out', 'pdf', 'run.xml', 'snm', 'toc']
+%! arara: --> }
+%! arara: lualatex: {
+%! arara: --> shell: yes,
+%! arara: --> draft: yes,
+%! arara: --> interaction: batchmode
+%! arara: --> }
+%! arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+%! arara: clean: {
+%! arara: --> extensions:
+%! arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav', 'out', 'run.xml', 'snm', 'toc']
+%! arara: --> }
+\input{preamble}
+
+\pointpoints{Punto}{Puntos}
+\bracketedpoints
+\begin{document}
+\begin{center}
+	\sffamily\bfseries\Large
+	Métodos Numéricos para Ecuaciones Diferenciales Parciales~CM 032 A\\
+	Laboratorio N$^{\circ}1$
+\end{center}
+
+\begin{center}
+	\fbox{\fbox{\parbox{5.5in}
+			{\centering
+				Responda las preguntas en los espacios provistos en las hojas
+				de preguntas.
+				Los argumentos y la claridad de las respuestas se
+				considerarán en la puntuación final.
+			}}}
+\end{center}
+\vspace{0.1in}
+\makebox[\textwidth]{Nombres y apellidos:\enspace\hrulefill}
+\vspace{0.2in}
+\makebox[\textwidth]{Nombres y apellidos del profesor:\enspace Fidel Jara Huanca.\hfill}
+
+Estudie el material \textcolor{red}{\href{https://sbu-python-class.github.io/python-science}{Python for Scientific Computing}}
+y responda las siguientes preguntas.
+
+\begin{questions}
+	\question
+
+	Cuando hablamos de punto flotante, discutimos el
+	\textit{épsilon de la máquina}, $\epsilon$ -este es el número más
+	pequeño que cuando se suma a $1$ sigue siendo diferente de $1$.
+	Calcularemos $\epsilon$ aquí:
+	\begin{itemize}
+		\item
+
+		      Elija una estimación inicial para $\epsilon$ de
+		      \mintinline{python}|eps = 1|.
+
+		\item
+
+		      Cree un bucle que compruebe si
+		      \mintinline{python}|1 + eps| es diferente de
+		      \mintinline{python}|1|.
+
+		\item
+
+		      En cada iteración del bucle, corte el valor de
+		      \mintinline{python}|eps| por la mitad.
+	\end{itemize}
+	¿Qué valor de $\epsilon$ encuentras?
+
+	\question
+
+	Para iterar sobre las tuplas, donde la \textit{i}ésima tupla contiene
+	los \textit{i}-ésimos elementos de ciertas secuencias, podemos usar la función
+	\mintinline{python}|zip(*secuencias)|.
+
+	Iteraremos sobre dos listas, \mintinline{python}|nombres| y
+	\mintinline{python}|edad| e imprima las tuplas resultantes.
+
+	\begin{itemize}
+		\item
+
+		      Empiece por inicializar las listas
+		      \mintinline{python}|nombres = ["Mary", "John", "Sarah"]| y
+		      \mintinline{python}|edad = [21, 56, 98]|.
+
+		\item
+
+
+		      Iterar sobre las tuplas que contienen un nombre y una edad,
+		      la función \mintinline{python}|zip(list1, list2)| la
+		      función podría ser útil aquí.
+
+		\item
+
+		      Imprima cadenas formateadas del tipo
+		      \mintinline{text}|"Nombre tiene EDAD años"|.
+	\end{itemize}
+
+	\question
+
+	La función \mintinline{python}|enumerate(secuencia)| retorna
+	tuplas que contienen índices de objetos en la secuencia, y los
+	objetos.
+
+	El módulo \mintinline{python}|random| proporciona herramientas para
+	trabajar con los números aleatorios.
+	En particular, \mintinline{python}|random.randint(start, end)|
+	genera un número aleatorio no menor que
+	\mintinline{python}|start|, y no mayor que \mintinline{python}|end|.
+
+	\begin{itemize}
+		\item
+
+		      Genere una lista de $10$ números aleatorios de $0$ a $9$.
+
+		\item
+
+		      Usando la función \mintinline{python}|enumerate(random_list)|,
+		      iterar sobre las tuplas de números aleatorios y sus índices,
+		      e imprimirlos \mintinline{text}|"Coincidencia: NÚMERO e ÍNDICE"|
+		      si el número aleatorio y su índice en la lista coinciden.
+	\end{itemize}
+	% \inputminted[firstline=1,lastline=43,fontsize=\tiny,linenos,highlightlines={23-28}]{scilab}{main.sci}
+	\inputminted[fontsize=\tiny,linenos]{python}{q3.py}
+
+	\question
+
+	La secuencia de Fibbonacci es una secuencia numérica donde cada
+	número es la suma de los números anteriores $2$, por ejemplo,
+	$1$, $1$, $2$, $3$, $5$, $8$, $13$, \lpuntos.
+	Crea una lista donde los elementos son los términos de la secuencia
+	de Fibbonacci:
+	\begin{itemize}
+		\item
+
+		      Comience con la lista \mintinline{python}|fib = [1, 1]|.
+
+		\item
+
+		      Repita $25$ veces, calcule el siguiente término como la suma de
+		      términos de $2$ anteriores y añádalos a la lista.
+
+		\item
+
+		      Una vez completado el ciclo, imprima los términos.
+	\end{itemize}
+	Puede resultarle útil utilizar \mintinline{python}|fib[-1]| y
+	\mintinline{python}|fib[-2]| para acceder a los dos últimos elementos del
+	lista.
+
+	\question
+
+	Podemos usar la función \mintinline{python}|input()| para preguntar por
+	la entrada desde el prompt.
+
+	Cree una lista vacía y use un bucle \mintinline{python}|while| para solicitar
+	información al usuario y agregue sus entradas a la lista.
+	Continúe en bucle hasta que se agreguen $10$ elementos a la lista.
+
+	\question
+
+	Here is a list of book titles
+	(from \url{http://thegreatestbooks.org}).
+	Loop through the list and capitalize each word in each title.
+	You might find the \mintinline{python}|.capitalize()| method that
+	works on strings useful.
+	\inputminted[fontsize=\tiny,linenos]{python}{q6.py}
+
+	\question
+
+	Here's some text (the Gettysburg Address).
+	Our goal is to count how many times each word repeats.
+	We'll do a brute force method first, and then we'll look a ways to
+	do it more efficiently (and compactly).
+
+	\inputminted[fontsize=\tiny,linenos]{python}{q7.py}
+
+	We've already seen the \mintinline{python}|.split()| method will,
+	by default, split by spaces, so it will split this into words,
+	producing a list:
+
+	Now, the next problem is that some of these still have punctuation.
+	In particular, we see \mintinline{python}|"."|,
+	\mintinline{python}|","|, and \mintinline{python}|"--"|.
+
+	When considering a word, we can get rid of these by using the
+	\mintinline{python}|.replace()| method:
+
+	Another problem is case-we want to count ``but'' and ``But'' as the same.
+	Strings have a \mintinline{python}|lower()| method that can be used
+	to convert a string:
+	Recall that strings are immutable, so \mintinline{python}|`replace()`| produces a new string on output.
+
+	Create a dictionary that uses the unique words as keys and has as a
+	value the number of times that word appears.
+
+	Write a loop over the words in the string (using our split version)
+	and do the following:
+	\begin{itemize}
+		\item
+
+		      Remove any punctuation.
+
+		\item
+
+		      Convert to lowercase.
+
+		\item
+
+		      Test if the word is already a key in the dictionary (using the `in` operator).
+
+		\item
+
+		      If the key exists, increment the word count for that key.
+
+		\item
+
+		      Otherwise, add it to the dictionary with the appropriate count of \mintinline{python}|1|.
+	\end{itemize}
+
+	At the end, print out the words and a count of how many times they appear.
+
+	\question
+
+	We can actually do this a lot more compactly by using another list
+	comprehensions and another python datatype called a set.
+	A set is a group of items, where each item is unique (e.g., no
+	repetitions).
+	Here's a list comprehension that removes all the punctuation and converts to lower case:
+	and by using the \mintinline{python}|set()| function, we turn the list into a set, removing any duplicates:
+	now we can loop over the unique words and use the \mintinline{python}|count()| method of a list to find how many there are
+	Even shorter -- we can use a dictionary comprehension, like a list comprehension.
+
+	\inputminted[fontsize=\tiny,linenos]{python}{q8.py}
+
+	\question
+
+	Let's practice functions.
+	Here's a simple function that takes a string and returns a list of
+	all the $4$ letter words:
+
+	Write a version of this function that takes a second argument, $n$,
+	that is the word length we want to search for.
+
+	\question
+
+	A prime number is divisible only by 1 and itself.
+	We want to write a function that takes a positive integer, $n$,
+	and finds all of the primes up to that number.
+
+	A simple (although not very fast) way to find the primes is to
+	start at $1$, and build a list of primes by checking if the current
+	number is divisible by any of the previously found primes.
+	If it is not divisible by any earlier primes, then it is a prime.
+
+	The modulus operator, \% could be helpful here.
+
+	\question
+
+	We want to safely convert a string into a \mintinline{python}|float|,
+	\mintinline{python}|int|, or leave it as a string, depending on its contents.
+	As we've already seen, python provides \mintinline{python}|float()|
+	and \mintinline{python}|int()| functions for this:
+
+	Notice that an \mintinline{python}|int| can be converted to a
+	\mintinline{python}|float|, but if you convert a
+	\mintinline{python}|float| to an \mintinline{python}|int|, you rise
+	losing significant digits.
+	A string cannot be converted to either.
+
+	Write a function, \mintinline{python}|convert_type(a)| that takes a
+	string \mintinline{python}|a|, and converts it to a float if it is
+	a number with a decimal point, an int if it is an integer, or
+	leaves it as a string otherwise, and returns the result.
+	You'll want to use exceptions to prevent the code from aborting.
+
+	\inputminted[fontsize=\tiny,linenos]{python}{q10.py}
+
+	\question
+
+	Here we'll write a simple tic-tac-toe game that 2 players can play.
+	First we'll create a string that represents our game board:
+
+	This board will look a little funny if we just print it—the spacing is set to look right when we replace the {} with x or o
+
+	and well use a dictionary to denote the status of each square, “x”, “o”, or empty, “”
+
+	Note that our {} placeholders in the board string have identifiers (the numbers in the {}).
+	We can use these to match the variables we want to print to the placeholder in the string,
+	regardless of the order in the format()
+	Here’s an easy way to add the values of our dictionary to the appropriate squares in our game board. First note that each of the {} is labeled with a number that matches the keys in our dictionary.
+	Python provides a way to unpack a dictionary into labeled arguments, using **
+	This lets us to write a function to show the tic-tac-toe board.
+
+	Now we need a function that asks a player for a move:
+
+	Using the functions defined above,
+
+	\begin{itemize}
+		\item \mintinline{python}|initialize_board()|
+		\item \mintinline{python}|show_board()|
+		\item \mintinline{python}|get_move()|
+	\end{itemize}
+	fill in the function \mintinline{python}|play_game()| below to complete the game,
+	asking for the moves one at a time, alternating between player $1$ and $2$.
+
+	\question
+
+	Let's write a simple shopping cart class - this will hold items
+	that you intend to purchase as well as the amount, etc.
+	And allow you to add / remove items, get a subtotal, etc.
+
+	We'll use two classes:
+	Item will be a single item and \mintinline{python}|ShoppingCart|
+	will be the collection of items you wish to purchase.
+
+	First, our store needs an inventory - here's what we have for sale:
+
+	Here's the start of an item class - we want it to hold the name and quantity.
+
+	You should have the following features:
+
+	\begin{itemize}
+		\item
+
+		      the name should be something in our inventory.
+
+		\item
+
+		      Our shopping cart will include a list of all the items we
+		      want to buy, so we want to be able to check for duplicates.
+		      Implement the equal test,\mintinline{python}|==|, using
+		      \mintinline{python}|__eq__|.
+
+		\item
+
+		      We'll want to consolidate dupes, so implement the
+		      \mintinline{python}|+| operator, using
+		      \mintinline{python}|__add__| so we can add items together in our shopping cart.
+		      Note, add should raise a \mintinline{python}|ValueError| if you try to add two \mintinline{python}|Items| that don't have the same name.
+	\end{itemize}
+	Here's a start:
+\end{questions}
+\vfill
+\begin{flushright}\bfseries
+	Facultad de Ciencias\\[2mm]
+	Universidad Nacional de Ingeniería\\[2mm]
+	25 de marzo de 2026
+\end{flushright}
+\end{document}

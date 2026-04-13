@@ -1,0 +1,36 @@
+% Figura para Pregunta 2: Ecuación de difusión-advección en dominio espacio-tiempo
+\begin{tikzpicture}[scale=1.0]
+	% Ejes
+	\draw[->] (-1, 0) -- (6, 0) node[right] {$x \in \mathbb{R}$};
+	\draw[->] (0, -1) -- (0, 5) node[above] {$t > 0$};
+	
+	% Región del dominio
+	\draw[thick, fill=blue!10] (-0.5, 0.1) rectangle (5.5, 4.5);
+	
+	% Etiqueta de región
+	\node[left] at (-0.5, 2.25) {$\mathbb{R} \times (0,\infty)$};
+	
+	% Línea de condición inicial (t=0)
+	\draw[ultra thick, blue] (-0.5, 0) -- (5.5, 0) node[right, color=blue] {$t=0$: $u(x,0)=f(x)$};
+	
+	% Ecuación diferencial en el dominio
+	\node[align=center, font=\large] at (2.5, 2.5) {%
+		$\dfrac{\partial u}{\partial t} = \dfrac{\partial^2 u}{\partial x^2} + a\dfrac{\partial u}{\partial x}$\\[0.5cm]%
+		(Difusión + Advección)%
+	};
+	
+	% Etiquetas de variables
+	\node[right, align=left] at (6, 3) {%
+		\small%
+		$u(x,t)$: incógnita\\%
+		$a$: coef. advección\\%
+		$f(x)$: dato inicial%
+	};
+	
+	% Flechas indicando evolución temporal
+	\draw[->>, thick, red] (1, 0.5) -- (1, 1.5);
+	\draw[->>, thick, red] (3, 0.5) -- (3, 1.5);
+	\draw[->>, thick, red] (5, 0.5) -- (5, 1.5);
+	
+	\node[right, small, color=red] at (5.5, 1) {evolución};
+\end{tikzpicture}
